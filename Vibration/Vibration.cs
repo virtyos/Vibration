@@ -158,7 +158,7 @@ public static class Vibration
             if ( AndroidVersion >= 26 ) {
                 AndroidJavaObject createOneShot = vibrationEffect.CallStatic<AndroidJavaObject> ( "createOneShot", milliseconds, -1 );
                 vibrator.Call ( "vibrate", createOneShot );
-
+                createOneShot.Dispose();
             } else {
                 vibrator.Call ( "vibrate", milliseconds );
             }
@@ -176,14 +176,14 @@ public static class Vibration
                 long[] amplitudes;
                 AndroidJavaObject createWaveform = vibrationEffect.CallStatic<AndroidJavaObject> ( "createWaveform", pattern, repeat );
                 vibrator.Call ( "vibrate", createWaveform );
-
+                createWaveform.Dispose();
             } else {
                 vibrator.Call ( "vibrate", pattern, repeat );
             }
         }
     }
 #endif
-    
+
     ///<summary>
     ///Only on Android
     ///</summary>
